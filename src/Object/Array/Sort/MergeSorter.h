@@ -16,9 +16,9 @@ template<typename E> class MergeSorter : public Sorter<E> {
   private:
     void merge(E *firstArray, size_t firstArraySize, E *secondArray,
                size_t secondArraySize) {
-        E *           resultArray  = new E[firstArraySize + secondArraySize];
-        unsigned long firstReader  = 0;
-        unsigned long secondReader = 0;
+        E *    resultArray  = new E[firstArraySize + secondArraySize];
+        size_t firstReader  = 0;
+        size_t secondReader = 0;
 
         while (firstReader + secondReader < firstArraySize + secondArraySize) {
             if (firstArray[firstReader] < secondArray[secondReader]) {
@@ -50,13 +50,13 @@ template<typename E> class MergeSorter : public Sorter<E> {
   private:
     // TODO: check odd size and even size.
     void mergeSort(E *array, size_t size) {
-        E *           firstArray     = array;
-        unsigned long firstArraySize = size / 2;
+        E *    firstArray     = array;
+        size_t firstArraySize = size / 2;
 
-        E *           secondArray = array + size / 2;
-        unsigned long secondSize  = size / 2;
+        E *    secondArray = array + size / 2;
+        size_t secondSize  = size / 2;
 
-        merge()
+        merge(firstArray, firstArraySize, secondArray, secondSize);
     }
 
   public:
