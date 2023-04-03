@@ -43,6 +43,8 @@ template<typename E> class MergeSorter : public Sorter<E> {
         //  Copy `resultArray` to `firstArray`.
         copyArray(firstArray, firstArraySize + secondArraySize, resultArray,
                   firstArraySize + secondArraySize);
+
+        delete[] resultArray;
     }
 
   private:
