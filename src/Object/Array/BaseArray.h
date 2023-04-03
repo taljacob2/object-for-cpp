@@ -4,6 +4,7 @@
 
 #include "../Object.h"
 #include "../Unique.h"
+#include "Sort/Sorter.h"
 #include <functional>
 #include <iostream>
 
@@ -77,6 +78,10 @@ template<typename E> class BaseArray : public Object {
   protected:
     /// *Must* be `0` for `move` operation.
     unsigned long _physicalSize = 0;
+
+  protected:
+    /// Allows to sort the array.
+    Sorter<Unique<E>> *_sorter = new Sorter<Unique<E>>();
 
   public:
     unsigned long size() const { return _physicalSize; }
