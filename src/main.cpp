@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "Array/BaseArray.h"
-#include "Random/Random.h"
+#include "Object/Array/BaseArray.h"
+#include "Object/Random/Random.h"
 
 int main() {
 
