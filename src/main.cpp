@@ -1,17 +1,9 @@
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
 
 #include "Array/BaseArray.h"
-
-int getRandomNumberBetweenRange(int lowestValuePossible,
-                                int highestValuePossible) {
-    return lowestValuePossible +
-           rand() % (highestValuePossible - lowestValuePossible + 1);
-}
+#include "Random/Random.h"
 
 int main() {
-    srand((unsigned int) time(NULL));
 
     std::cout << "Hello, World!" << std::endl;
 
