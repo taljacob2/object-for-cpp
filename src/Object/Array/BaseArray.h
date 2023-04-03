@@ -52,9 +52,9 @@
  * @tparam E the type of `element` in the array.
  *
  * @see Unique
- * @version 1.0.6
+ * @version 1.0.7
  */
-template<typename E> class BaseArray : public Object {
+template<typename E> class BaseArray : public Object, Sorter<E> {
 
   protected:
     static constexpr char *PHYSICAL_SIZE_MESSAGE =
@@ -674,6 +674,9 @@ template<typename E> class BaseArray : public Object {
             os << *element;
         }
     }
+
+  public:
+    void sort(E *array) override { _sorter->sort(_array); }
 };
 
 #endif // BASE_ARRAY_H
