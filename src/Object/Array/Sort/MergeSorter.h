@@ -55,7 +55,6 @@ template<typename E> class MergeSorter : public Sorter<E> {
     }
 
   private:
-    // TODO: check odd size and even size.
     void mergeSort(E *array, size_t size) {
         if (size == 1) { return; }
 
@@ -68,8 +67,8 @@ template<typename E> class MergeSorter : public Sorter<E> {
         E *    firstArray     = array;
         size_t firstArraySize = size / 2;
 
-        E *    secondArray = array + size / 2;
-        size_t secondSize  = size / 2;
+        E *    secondArray = array + firstArraySize;
+        size_t secondSize  = size - firstArraySize;
 
         mergeSort(firstArray, firstArraySize);
         mergeSort(secondArray, secondSize);
