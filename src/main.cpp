@@ -23,5 +23,8 @@ int main() {
 
     array->print(std::cout, *array);
 
+
+    delete array;
+
     return 0;
 }
