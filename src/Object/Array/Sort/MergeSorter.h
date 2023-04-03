@@ -6,6 +6,14 @@
 template<typename E> class MergeSorter : public Sorter<E> {
 
   private:
+    void copyArray(E *destinationArray, size_t destinationArraySize,
+                   E *sourceArray, size_t sourceArraySize) {
+        for (int i = 0; i < destinationArraySize && i < sourceArraySize; ++i) {
+            destinationArray[i] = sourceArray[i];
+        }
+    }
+
+  private:
     void swap(E &first, E &second) {
         E temp = first;
         first  = second;
@@ -15,7 +23,33 @@ template<typename E> class MergeSorter : public Sorter<E> {
   private:
     void merge(E *firstArray, size_t firstArraySize, E *secondArray,
                size_t secondArraySize) {
+        E *           resultArray  = new E[firstArraySize + secondArraySize];
+        unsigned long firstReader  = 0;
+        unsigned long secondReader = 0;
 
+        while (firstReader + secondReader < firstArraySize + secondArraySize) {
+            if (firstArray[firstReader] < secondArray[secondReader]) {
+                resultArray[firstReader + secondReader] =
+                        firstArray[firstReader];
+                firstReader++;
+            } else if (firstArray[firstReader] > secondArray[secondReader]) {
+                resultArray[firstReader + secondReader] =
+                        secondArray[secondReader];
+                secondReader++;
+            }
+        }
+        while (firstReader < firstArraySize) {
+            resultArray[firstReader + secondReader] = firstArray[firstReader];
+            firstReader++;
+        }
+        while (secondReader < secondArraySize) {
+            resultArray[firstReader + secondReader] = secondArray[secondReader];
+            secondReader++;
+        }
+
+        //  Copy `resultArray` to `firstArray`.
+        copyArray(firstArray, firstArraySize + secondArraySize, resultArray,
+                  firstArraySize + secondArraySize);
     }
 
   private:
