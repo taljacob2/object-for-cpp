@@ -14,13 +14,6 @@ template<typename E> class MergeSorter : public Sorter<E> {
     }
 
   private:
-    void swap(E &first, E &second) {
-        E temp = first;
-        first  = second;
-        second = temp;
-    }
-
-  private:
     void merge(E *firstArray, size_t firstArraySize, E *secondArray,
                size_t secondArraySize) {
         E *           resultArray  = new E[firstArraySize + secondArraySize];
