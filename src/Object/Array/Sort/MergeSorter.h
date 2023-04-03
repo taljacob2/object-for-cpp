@@ -5,9 +5,14 @@
 
 template<typename E> class MergeSorter : public Sorter<E> {
 
-  public:
-    void sort(E *array) override {}
+  private:
+    void merge(E *array, size_t size) {}
 
+  private:
+    void mergeSort(E *array, size_t size) {}
+
+  public:
+    void sort(E *array) override { mergeSort(array); }
 };
 
 #endif //MERGESORTER_H
