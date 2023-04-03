@@ -56,6 +56,11 @@ template<typename E> class MergeSorter : public Sorter<E> {
         E *    secondArray = array + size / 2;
         size_t secondSize  = size / 2;
 
+        mergeSort(firstArray, firstArraySize);
+        mergeSort(secondArray, secondSize);
+
+        // Sort.
+
         merge(firstArray, firstArraySize, secondArray, secondSize);
     }
 
