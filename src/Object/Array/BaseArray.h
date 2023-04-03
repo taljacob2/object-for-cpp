@@ -81,7 +81,7 @@ template<typename E> class BaseArray : public Object, Sorter<E> {
 
   protected:
     /// Allows to sort the array.
-    Sorter<Unique<E>> *_sorter = new MergeSorter<Unique<E>>();
+    Sorter<Unique<E> *> *_sorter = new MergeSorter<Unique<E> *>();
 
   public:
     unsigned long size() const { return _physicalSize; }
