@@ -77,7 +77,7 @@ template<typename E> class MergeSorter : public Sorter<E> {
     }
 
   public:
-    void sort(E *array) override { mergeSort(array); }
+    void sort(E *array, size_t size) override { mergeSort(array, size); }
 };
 
 #endif //MERGESORTER_H

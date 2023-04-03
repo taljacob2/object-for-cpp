@@ -13,7 +13,7 @@ template<typename E> class Sorter {
     /**
      * Sorts an array.
      */
-    virtual void sort(E *array) = 0;
+    virtual void sort(E *array, size_t size) = 0;
 };
 
 #endif //SORTER_H

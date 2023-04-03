@@ -675,8 +675,10 @@ template<typename E> class BaseArray : public Object, Sorter<E> {
         }
     }
 
-  public:
-    void sort(E *array) override { _sorter->sort(_array); }
+  private:
+    void sort(E *array, size_t size) override {
+        _sorter->sort(_array, _physicalSize);
+    }
 };
 
 #endif // BASE_ARRAY_H
