@@ -2,8 +2,8 @@
 #ifndef BASE_ARRAY_H
 #define BASE_ARRAY_H
 
-#include "Object.h"
-#include "Unique.h"
+#include "../Object.h"
+#include "../Unique.h"
 #include <functional>
 #include <iostream>
 
