@@ -1,4 +1,7 @@
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
+
 
 int main() {
     srand((unsigned int) time(NULL));
