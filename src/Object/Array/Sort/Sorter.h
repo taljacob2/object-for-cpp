@@ -1,6 +1,8 @@
 #ifndef SORTER_H
 #define SORTER_H
 
+#include <functional>
+
 template<typename E> class Sorter {
 
   protected:
@@ -9,10 +11,14 @@ template<typename E> class Sorter {
   protected:
     size_t _size;
 
+  protected:
+    std::function<bool(E, E)> _compare;
+
   public:
-    Sorter(E *array, size_t size) {
-        _array = array;
-        _size  = size;
+    Sorter(E *array, size_t size, const std::function<bool(E, E)> &compare) {
+        _array    = array;
+        _size     = size;
+        _compare = compare;
     };
 
   public:

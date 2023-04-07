@@ -6,7 +6,8 @@
 template<typename E> class MergeSorter : public Sorter<E> {
 
   public:
-    MergeSorter(E *array, size_t size) : Sorter<E>(array, size) {}
+    MergeSorter(E *array, size_t size, const std::function<bool(E, E)> &compare)
+        : Sorter<E>(array, size, compare) {}
 
   public:
     MergeSorter() = delete;
@@ -28,17 +29,19 @@ template<typename E> class MergeSorter : public Sorter<E> {
 
   private:
     static void merge(E *firstArray, size_t firstArraySize, E *secondArray,
-                      size_t secondArraySize) {
+                      size_t                     secondArraySize,
+                      std::function<bool(E, E)> &compare) {
         E *    resultArray  = new E[firstArraySize + secondArraySize];
         size_t firstReader  = 0;
         size_t secondReader = 0;
 
         while (firstReader + secondReader < firstArraySize + secondArraySize) {
-            if (firstArray[firstReader] < secondArray[secondReader]) {
+            if (compare(firstArray[firstReader], secondArray[secondReader])) {
                 resultArray[firstReader + secondReader] =
                         firstArray[firstReader];
                 firstReader++;
-            } else if (firstArray[firstReader] > secondArray[secondReader]) {
+            } else if (compare(secondArray[secondReader],
+                               firstArray[firstReader])) {
                 resultArray[firstReader + secondReader] =
                         secondArray[secondReader];
                 secondReader++;
@@ -61,13 +64,14 @@ template<typename E> class MergeSorter : public Sorter<E> {
     }
 
   private:
-    static void mergeSort(E *array, size_t size) {
+    static void mergeSort(E *array, size_t size,
+                          std::function<bool(E, E)> &compare) {
         if (size == 1) { return; }
 
         if (size == 2) {
 
             // Sort.
-            if (array[0] > array[1]) { swap(array[0], array[1]); }
+            if (compare(array[1], array[0])) { swap(array[1], array[0]); }
         }
 
         E *    firstArray     = array;
@@ -76,14 +80,14 @@ template<typename E> class MergeSorter : public Sorter<E> {
         E *    secondArray = array + firstArraySize;
         size_t secondSize  = size - firstArraySize;
 
-        mergeSort(firstArray, firstArraySize);
-        mergeSort(secondArray, secondSize);
+        mergeSort(firstArray, firstArraySize, compare);
+        mergeSort(secondArray, secondSize, compare);
 
-        merge(firstArray, firstArraySize, secondArray, secondSize);
+        merge(firstArray, firstArraySize, secondArray, secondSize, compare);
     }
 
   public:
-    void sort() { mergeSort(this->_array, this->_size); }
+    void sort() { mergeSort(this->_array, this->_size, this->_compare); }
 };
 
 #endif //MERGESORTER_H

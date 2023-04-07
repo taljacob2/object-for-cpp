@@ -94,7 +94,11 @@ template<typename E> class BaseArray : public Object {
         _physicalSize = physicalSize;
         _array        = new Unique<E> *[_physicalSize];
         initUniqueArray(_array, _physicalSize);
-        _sorter = new MergeSorter<Unique<E> *>(_array, _physicalSize);
+        _sorter = new MergeSorter<Unique<E> *>(
+                _array, _physicalSize,
+                [](Unique<E> *first, Unique<E> *second) {
+                    return *first < *second;
+                });
     }
 
   protected:
