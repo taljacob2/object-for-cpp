@@ -54,7 +54,7 @@
  * @see Unique
  * @version 1.0.7
  */
-template<typename E> class BaseArray : public Object, Sorter<E> {
+template<typename E> class BaseArray : public Object {
 
   protected:
     static constexpr char *PHYSICAL_SIZE_MESSAGE =
@@ -81,8 +81,7 @@ template<typename E> class BaseArray : public Object, Sorter<E> {
 
   protected:
     /// Allows to sort the array.
-    Sorter<Unique<E> *> *_sorter =
-            new MergeSorter<Unique<E> *>(_array, _physicalSize);
+    Sorter<Unique<E> *> *_sorter = nullptr;
 
   public:
     unsigned long size() const { return _physicalSize; }
@@ -95,6 +94,7 @@ template<typename E> class BaseArray : public Object, Sorter<E> {
         _physicalSize = physicalSize;
         _array        = new Unique<E> *[_physicalSize];
         initUniqueArray(_array, _physicalSize);
+        _sorter = new MergeSorter<Unique<E> *>(_array, _physicalSize);
     }
 
   protected:

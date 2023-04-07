@@ -83,7 +83,7 @@ template<typename E> class MergeSorter : public Sorter<E> {
     }
 
   public:
-    void sort() override { mergeSort(this->_array, this->_size); }
+    void sort() { mergeSort(this->_array, this->_size); }
 };
 
 #endif //MERGESORTER_H

@@ -3,10 +3,10 @@
 
 template<typename E> class Sorter {
 
-  private:
+  protected:
     E *_array;
 
-  private:
+  protected:
     size_t _size;
 
   public:
