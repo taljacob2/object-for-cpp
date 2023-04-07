@@ -35,7 +35,7 @@ template<typename E> class MergeSorter : public Sorter<E> {
         size_t firstReader  = 0;
         size_t secondReader = 0;
 
-        while (firstReader + secondReader < firstArraySize + secondArraySize) {
+        while (firstReader < firstArraySize && secondReader < secondArraySize) {
             if (compare(firstArray[firstReader], secondArray[secondReader])) {
                 resultArray[firstReader + secondReader] =
                         firstArray[firstReader];
