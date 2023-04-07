@@ -16,6 +16,9 @@ template<typename E> class Sorter {
     };
 
   public:
+    Sorter() = delete;
+
+  public:
     virtual ~Sorter() = default;
 
   public:
