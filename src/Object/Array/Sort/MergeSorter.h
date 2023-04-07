@@ -40,8 +40,7 @@ template<typename E> class MergeSorter : public Sorter<E> {
                 resultArray[firstReader + secondReader] =
                         firstArray[firstReader];
                 firstReader++;
-            } else if (compare(secondArray[secondReader],
-                               firstArray[firstReader])) {
+            } else {
                 resultArray[firstReader + secondReader] =
                         secondArray[secondReader];
                 secondReader++;
