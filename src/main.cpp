@@ -13,6 +13,8 @@ int main() {
         array->setElement((int &&) rand() % 20, i);
     }
 
+    array->sort();
+
     array->print(std::cout, *array);
 
 

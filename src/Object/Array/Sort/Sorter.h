@@ -3,8 +3,17 @@
 
 template<typename E> class Sorter {
 
+  private:
+    E *_array;
+
+  private:
+    size_t _size;
+
   public:
-    Sorter() = default;
+    Sorter(E *array, size_t size) {
+        _array = array;
+        _size  = size;
+    };
 
   public:
     virtual ~Sorter() = default;
@@ -13,7 +22,7 @@ template<typename E> class Sorter {
     /**
      * Sorts an array.
      */
-    virtual void sort(E *array, size_t size) = 0;
+    virtual void sort() = 0;
 };
 
 #endif //SORTER_H

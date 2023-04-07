@@ -81,7 +81,8 @@ template<typename E> class BaseArray : public Object, Sorter<E> {
 
   protected:
     /// Allows to sort the array.
-    Sorter<Unique<E> *> *_sorter = new MergeSorter<Unique<E> *>();
+    Sorter<Unique<E> *> *_sorter =
+            new MergeSorter<Unique<E> *>(_array, _physicalSize);
 
   public:
     unsigned long size() const { return _physicalSize; }
@@ -675,10 +676,8 @@ template<typename E> class BaseArray : public Object, Sorter<E> {
         }
     }
 
-  private:
-    void sort(E *array, size_t size) override {
-        _sorter->sort(_array, _physicalSize);
-    }
+  public:
+    void sort() { _sorter->sort(); }
 };
 
 #endif // BASE_ARRAY_H

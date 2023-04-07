@@ -5,24 +5,30 @@
 
 template<typename E> class MergeSorter : public Sorter<E> {
 
+  public:
+    MergeSorter(E *array, size_t size) : Sorter<E>(array, size) {}
+
+  public:
+    MergeSorter() = delete;
+
   private:
-    void copyArray(E *destinationArray, size_t destinationArraySize,
-                   E *sourceArray, size_t sourceArraySize) {
+    static void copyArray(E *destinationArray, size_t destinationArraySize,
+                          E *sourceArray, size_t sourceArraySize) {
         for (int i = 0; i < destinationArraySize && i < sourceArraySize; ++i) {
             destinationArray[i] = sourceArray[i];
         }
     }
 
   private:
-    void swap(E &first, E &second) {
+    static void swap(E &first, E &second) {
         E temp = first;
         first  = second;
         second = temp;
     }
 
   private:
-    void merge(E *firstArray, size_t firstArraySize, E *secondArray,
-               size_t secondArraySize) {
+    static void merge(E *firstArray, size_t firstArraySize, E *secondArray,
+                      size_t secondArraySize) {
         E *    resultArray  = new E[firstArraySize + secondArraySize];
         size_t firstReader  = 0;
         size_t secondReader = 0;
@@ -55,7 +61,7 @@ template<typename E> class MergeSorter : public Sorter<E> {
     }
 
   private:
-    void mergeSort(E *array, size_t size) {
+    static void mergeSort(E *array, size_t size) {
         if (size == 1) { return; }
 
         if (size == 2) {
@@ -77,7 +83,7 @@ template<typename E> class MergeSorter : public Sorter<E> {
     }
 
   public:
-    void sort(E *array, size_t size) override { mergeSort(array, size); }
+    void sort() override { mergeSort(this->_array, this->_size); }
 };
 
 #endif //MERGESORTER_H
